@@ -1,0 +1,911 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, viewport-fit=cover"
+        />
+        <title>Rohan Upreti - Real-time Systems Developer</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap"
+            rel="stylesheet"
+        />
+        <style>
+            :root {
+                --bg: #ffffff;
+                --fg: #10223a;
+                --muted: #5d7089;
+                --line: #dce8f6;
+                --accent: #2f80ed;
+                --card: #eef5fe;
+                --display:
+                    "MonoLisa", "JetBrains Mono", ui-monospace, SFMono-Regular,
+                    Menlo, Consolas, monospace;
+                --body:
+                    "MonoLisa", "JetBrains Mono", ui-monospace, SFMono-Regular,
+                    Menlo, Consolas, monospace;
+                color-scheme: light;
+                box-sizing: border-box;
+                padding-top: env(safe-area-inset-top, 0px);
+                padding-bottom: env(safe-area-inset-bottom, 0px);
+            }
+            html {
+                scroll-padding-top: env(safe-area-inset-top, 0px);
+                scroll-behavior: smooth;
+            }
+            * {
+                box-sizing: border-box;
+            }
+            body {
+                margin: 0;
+                background: var(--bg);
+                color: var(--fg);
+                font-family: var(--body);
+                font-size: 15px;
+                line-height: 1.65;
+            }
+            a {
+                color: inherit;
+            }
+            .wrap {
+                max-width: 1120px;
+                margin: 0 auto;
+                padding: 0 24px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            /* nav */
+            nav {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 22px;
+
+                border-radius: 20px;
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 0.06em;
+                max-width: 800px;
+                position: sticky;
+                top: 10px;
+                background-color: #eef5fe;
+                box-shadow:
+                    rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+                    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+            }
+            nav .logo {
+                font-family: var(--display);
+                font-size: 20px;
+                letter-spacing: 0.04em;
+                text-decoration: none;
+            }
+            nav ul {
+                display: flex;
+                gap: 26px;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+            }
+            nav a {
+                text-decoration: none;
+                color: var(--muted);
+            }
+            nav a:hover {
+                color: var(--accent);
+            }
+
+            /* hero */
+            .hero {
+                display: grid;
+                grid-template-columns: 300px 1fr;
+                gap: 56px;
+                padding: 56px 0 64px;
+            }
+            .card {
+                background: var(--card);
+                padding: 22px;
+                align-self: start;
+                border: 1px solid var(--line);
+                border-radius: 12px;
+            }
+            .avatar {
+                width: 100%;
+                aspect-ratio: 1/1;
+                background: var(--fg);
+                color: var(--bg);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-family: var(--display);
+                font-size: 96px;
+                letter-spacing: 0.02em;
+            }
+            .card h3 {
+                font-family: var(--display);
+                font-weight: 400;
+                font-size: 28px;
+                margin: 20px 0 6px;
+                text-transform: uppercase;
+                letter-spacing: 0.02em;
+            }
+            .card p {
+                margin: 0 0 18px;
+                color: var(--muted);
+                font-size: 15px;
+            }
+            .card ul {
+                list-style: none;
+                margin: 0;
+                padding: 0;
+                border-top: 1px solid var(--line);
+            }
+            .card li a {
+                display: flex;
+                justify-content: space-between;
+                padding: 10px 0;
+                border-bottom: 1px solid var(--line);
+                text-decoration: none;
+                font-size: 14px;
+            }
+            .card li a:hover {
+                color: var(--accent);
+            }
+            h1 {
+                font-family: var(--display);
+                font-weight: 400;
+                font-size: clamp(46px, 8.4vw, 112px);
+                line-height: 0.95;
+                text-transform: uppercase;
+                margin: 0 0 28px;
+                letter-spacing: 0.005em;
+            }
+            h1 em {
+                font-style: normal;
+                color: var(--accent);
+            }
+            .intro {
+                max-width: 560px;
+                font-size: 18px;
+                color: var(--muted);
+                margin: 0 0 40px;
+            }
+            .stats {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 20px;
+            }
+            .stat {
+                background: var(--card);
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 14px 16px;
+            }
+            .stat b {
+                display: block;
+                font-family: var(--display);
+                font-weight: 400;
+                font-size: 44px;
+                line-height: 1;
+            }
+            .stat span {
+                font-size: 12px;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--muted);
+            }
+
+            /* sections */
+            section {
+                padding: 56px 0;
+                border-top: 1px solid var(--line);
+            }
+            .sec-head {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+                margin-bottom: 28px;
+            }
+            h2 {
+                font-family: var(--display);
+                font-weight: 400;
+                font-size: clamp(34px, 5vw, 56px);
+                text-transform: uppercase;
+                margin: 0;
+                line-height: 1;
+            }
+            .tag {
+                font-size: 13px;
+                color: var(--muted);
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+            }
+
+            .proj {
+                display: grid;
+                grid-template-columns: 56px 1fr 320px;
+                gap: 20px;
+                padding: 26px 0;
+                border-top: 1px solid var(--line);
+                align-items: start;
+            }
+            .proj:last-child {
+                border-bottom: 1px solid var(--line);
+            }
+            .proj .n {
+                font-family: var(--display);
+                font-size: 22px;
+                color: var(--muted);
+            }
+            .proj h3 {
+                font-family: var(--display);
+                font-weight: 400;
+                font-size: clamp(26px, 3.4vw, 38px);
+                margin: 0 0 8px;
+                text-transform: uppercase;
+                line-height: 1.05;
+            }
+            .proj p {
+                margin: 0 0 6px;
+                color: var(--muted);
+                max-width: 620px;
+            }
+            .proj .stack {
+                font-size: 13px;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: var(--fg);
+            }
+            .proj .go {
+                justify-self: end;
+                text-decoration: none;
+                font-size: 13px;
+                color: var(--accent);
+                border: 1px solid var(--accent);
+                border-radius: 8px;
+                padding: 9px 16px;
+                white-space: nowrap;
+            }
+            .proj .go:hover {
+                background: var(--accent);
+                border-color: var(--accent);
+                color: #fff;
+            }
+
+            .job {
+                display: grid;
+                grid-template-columns: 200px 1fr;
+                gap: 20px;
+                padding: 6px 0 0;
+            }
+            .job .when {
+                color: var(--muted);
+                font-size: 14px;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .job h3 {
+                margin: 0 0 4px;
+                font-size: 20px;
+                font-weight: 600;
+            }
+            .job ul {
+                margin: 10px 0 0;
+                padding-left: 18px;
+                color: var(--muted);
+            }
+            .job li {
+                margin-bottom: 6px;
+            }
+            .edu {
+                margin-top: 36px;
+                padding-top: 24px;
+                border-top: 1px solid var(--line);
+            }
+            .edu p {
+                margin: 2px 0;
+                color: var(--muted);
+            }
+
+            .skills {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+            .skill {
+                padding: 18px;
+                background: var(--card);
+                border: 1px solid var(--line);
+                border-radius: 10px;
+            }
+            .skill h4 {
+                margin: 0 0 6px;
+                font-size: 13px;
+                text-transform: uppercase;
+                letter-spacing: 0.08em;
+                color: var(--accent);
+                font-weight: 600;
+            }
+            .skill p {
+                margin: 0;
+            }
+
+            .contact h2 {
+                font-size: clamp(40px, 9vw, 120px);
+                margin-bottom: 28px;
+            }
+            .contact a.mail {
+                font-family: var(--display);
+                font-size: clamp(22px, 4vw, 44px);
+                text-decoration: none;
+                border-bottom: 3px solid var(--accent);
+                padding-bottom: 2px;
+                word-break: break-all;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .contact a.mail:hover {
+                color: var(--accent);
+            }
+            footer {
+                padding: 28px 0 40px;
+                border-top: 1px solid var(--line);
+                color: var(--muted);
+                font-size: 13px;
+                display: flex;
+                justify-content: space-between;
+                gap: 12px;
+                flex-wrap: wrap;
+            }
+
+            h1,
+            h2,
+            .proj h3,
+            .card h3,
+            .stat b,
+            .avatar,
+            nav .logo,
+            .contact a.mail {
+                font-weight: 700;
+                letter-spacing: -0.03em;
+                text-transform: none;
+            }
+            h1 {
+                font-size: clamp(32px, 5.6vw, 68px);
+                line-height: 1.08;
+            }
+            h2 {
+                font-size: clamp(24px, 3.4vw, 36px);
+            }
+            .proj h3 {
+                font-size: clamp(19px, 2.4vw, 25px);
+                line-height: 1.2;
+            }
+            .card h3 {
+                font-size: 20px;
+            }
+            .stat b {
+                font-size: 30px;
+            }
+            .intro {
+                font-size: 15px;
+                max-width: 600px;
+            }
+            .avatar {
+                background: #d3e6fc;
+                color: var(--accent);
+                font-size: 64px;
+                border-radius: 10px;
+            }
+            .contact h2 {
+                font-size: clamp(28px, 5.5vw, 60px);
+            }
+            .contact a.mail {
+                font-size: clamp(15px, 2.6vw, 28px);
+            }
+            nav .logo {
+                font-size: 16px;
+            }
+            .proj .n {
+                font-size: 16px;
+            }
+            .side {
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                align-items: flex-end;
+                width: 100%;
+            }
+            .shot {
+                display: block;
+                width: 100%;
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                overflow: hidden;
+                background: #fff;
+                text-decoration: none;
+            }
+            .shot:hover {
+                border-color: var(--accent);
+            }
+            .shot .bar {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                padding: 6px 8px;
+                background: var(--card);
+                border-bottom: 1px solid var(--line);
+            }
+            .shot .bar i {
+                display: block;
+                width: 6px;
+                height: 6px;
+                border-radius: 50%;
+                background: #bcd3ee;
+            }
+            .shot .bar span {
+                margin-left: 6px;
+                font-size: 10px;
+                color: var(--muted);
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+            .shot svg {
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+            .s-bg {
+                fill: #f7fbff;
+            }
+            .s-a {
+                fill: var(--accent);
+            }
+            .s-b {
+                fill: #d3e6fc;
+            }
+            .s-c {
+                fill: #fff;
+                stroke: #c5daf3;
+            }
+            .s-d {
+                fill: var(--fg);
+            }
+            .view {
+                position: relative;
+                width: 100%;
+                aspect-ratio: 16/10;
+                overflow: hidden;
+                background: #fff;
+            }
+            .view iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 1280px;
+                height: 800px;
+                border: 0;
+                transform-origin: 0 0;
+                pointer-events: none;
+                background: #fff;
+            }
+            .view .cover {
+                position: absolute;
+                inset: 0;
+                z-index: 2;
+            }
+            @media (max-width: 860px) {
+                .hero {
+                    grid-template-columns: 1fr;
+                    gap: 36px;
+                }
+                .card {
+                    display: grid;
+                    grid-template-columns: 110px 1fr;
+                    gap: 0 20px;
+                }
+                .avatar {
+                    grid-row: 1/4;
+                    font-size: 44px;
+                }
+                .card h3 {
+                    margin-top: 0;
+                }
+                .card ul {
+                    grid-column: 1/-1;
+                    margin-top: 8px;
+                }
+                .proj {
+                    grid-template-columns: 36px 1fr;
+                }
+                .side {
+                    grid-column: 2;
+                    align-items: flex-start;
+                    max-width: 320px;
+                }
+                .job {
+                    grid-template-columns: 1fr;
+                    gap: 4px;
+                }
+                .skills {
+                    grid-template-columns: 1fr;
+                }
+                nav ul {
+                    gap: 16px;
+                }
+                nav .hide-sm {
+                    display: none;
+                }
+            }
+            @media (max-width: 520px) {
+                .stats {
+                    grid-template-columns: 1fr 1fr;
+                }
+                .wrap {
+                    padding: 0 18px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="wrap">
+            <nav>
+                <ul>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li class="hide-sm"><a href="#skills">Skills</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <header class="hero" id="top">
+                <aside class="card">
+                    <div class="avatar" aria-hidden="true">RU</div>
+                    <h3>Rohan Upreti</h3>
+                    <p>
+                        Full-stack developer in Kathmandu, building multiplayer
+                        and live-sync apps.
+                    </p>
+                    <ul>
+                        <li>
+                            <a
+                                href="https://github.com/Noozey"
+                                target="_blank"
+                                rel="noopener"
+                                >GitHub <span>&#8599;</span></a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="https://www.linkedin.com/in/rohan-upreti-8a9684295/"
+                                target="_blank"
+                                rel="noopener"
+                                >LinkedIn <span>&#8599;</span></a
+                            >
+                        </li>
+                        <li>
+                            <a href="mailto:rohanupreti561@gmail.com"
+                                >Email <span>&#8599;</span></a
+                            >
+                        </li>
+                    </ul>
+                </aside>
+                <div>
+                    <h1>Real-time systems <em>developer</em></h1>
+                    <p class="intro">
+                        I build things that have to stay in sync: multiplayer
+                        games, live chat and collaborative tools.
+                        Server-authoritative state, WebSockets, and the frontend
+                        to go with them. BSc Computing graduate (2026), happy to
+                        own a feature end to end, remotely.
+                    </p>
+                    <div class="stats">
+                        <div class="stat">
+                            <b>4</b><span>Projects built</span>
+                        </div>
+                        <div class="stat"><b>3</b><span>Live demos</span></div>
+                        <div class="stat">
+                            <b>2026</b><span>BSc graduate</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <section id="projects">
+                <div class="sec-head">
+                    <h2>Projects</h2>
+                    <span class="tag">Selected work</span>
+                </div>
+
+                <article class="proj">
+                    <span class="n">01</span>
+                    <div>
+                        <h3>2D Multiplayer Arena Shooter</h3>
+                        <p>
+                            A top-down shooter where every match runs on its own
+                            Cloudflare Durable Object. Server-authoritative
+                            health, respawns and match lifecycle, with
+                            interpolation to smooth out network jitter. Includes
+                            a custom raycasting engine for fog-of-war and
+                            line-of-sight, plus a scoreboard, kill feed,
+                            positional audio and ping monitor.
+                        </p>
+                        <span class="stack"
+                            >React · TypeScript · Durable Objects · WebSockets ·
+                            Canvas</span
+                        >
+                    </div>
+                    <div class="side">
+                        <div class="shot">
+                            <div class="bar">
+                                <i></i><i></i><i></i
+                                ><span>shooter-wc2.pages.dev</span>
+                            </div>
+                            <div class="view">
+                                <iframe
+                                    src="https://shooter-wc2.pages.dev/"
+                                    title="Live preview of the arena shooter"
+                                    loading="lazy"
+                                    tabindex="-1"
+                                    sandbox="allow-scripts allow-same-origin"
+                                ></iframe
+                                ><a
+                                    class="cover"
+                                    href="https://shooter-wc2.pages.dev/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    aria-label="Open the arena shooter"
+                                ></a>
+                            </div>
+                        </div>
+                        <a
+                            class="go"
+                            href="https://shooter-wc2.pages.dev/"
+                            target="_blank"
+                            rel="noopener"
+                            >Play it &#8599;</a
+                        >
+                    </div>
+                </article>
+
+                <article class="proj">
+                    <span class="n">02</span>
+                    <div>
+                        <h3>Multiplayer Poker Platform</h3>
+                        <p>
+                            Four players per table with event-driven sync for
+                            game state, chips and turn order. Move validation
+                            and side-pot maths live on the server so clients
+                            can't cheat. Supabase handles accounts, match
+                            history and disconnect/timeout handling.
+                        </p>
+                        <span class="stack"
+                            >React · Socket.io · Supabase · Shadcn/UI</span
+                        >
+                    </div>
+                    <div class="side">
+                        <div class="shot">
+                            <div class="bar">
+                                <i></i><i></i><i></i
+                                ><span>poker.rohanupreti4.workers.dev</span>
+                            </div>
+                            <div class="view">
+                                <iframe
+                                    src="https://poker.rohanupreti4.workers.dev/"
+                                    title="Live preview of the poker platform"
+                                    loading="lazy"
+                                    tabindex="-1"
+                                    sandbox="allow-scripts allow-same-origin"
+                                ></iframe
+                                ><a
+                                    class="cover"
+                                    href="https://poker.rohanupreti4.workers.dev/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    aria-label="Open the poker platform"
+                                ></a>
+                            </div>
+                        </div>
+                        <a
+                            class="go"
+                            href="https://poker.rohanupreti4.workers.dev/"
+                            target="_blank"
+                            rel="noopener"
+                            >Open site &#8599;</a
+                        >
+                    </div>
+                </article>
+
+                <article class="proj">
+                    <span class="n">03</span>
+                    <div>
+                        <h3>StriderDesk</h3>
+                        <p>
+                            Project management and collaboration tool with
+                            Kanban boards, a role-based JWT REST API, and in-app
+                            voice channels for team huddles via Agora. My
+                            final-year project, selected among the top FYP
+                            projects of the batch.
+                        </p>
+                        <span class="stack"
+                            >TypeScript · Node.js · Express · Supabase ·
+                            Agora</span
+                        >
+                    </div>
+                    <div class="side">
+                        <div class="shot">
+                            <div class="bar">
+                                <i></i><i></i><i></i
+                                ><span
+                                    >sriderdesk.rohanupreti4.workers.dev</span
+                                >
+                            </div>
+                            <div class="view">
+                                <iframe
+                                    src="https://sriderdesk.rohanupreti4.workers.dev/"
+                                    title="Live preview of StriderDesk"
+                                    loading="lazy"
+                                    tabindex="-1"
+                                    sandbox="allow-scripts allow-same-origin"
+                                ></iframe
+                                ><a
+                                    class="cover"
+                                    href="https://sriderdesk.rohanupreti4.workers.dev/"
+                                    target="_blank"
+                                    rel="noopener"
+                                    aria-label="Open StriderDesk"
+                                ></a>
+                            </div>
+                        </div>
+                        <a
+                            class="go"
+                            href="https://sriderdesk.rohanupreti4.workers.dev/"
+                            target="_blank"
+                            rel="noopener"
+                            >Open site &#8599;</a
+                        >
+                    </div>
+                </article>
+
+                <article class="proj">
+                    <span class="n">04</span>
+                    <div>
+                        <h3>Real-Time Chess</h3>
+                        <p>
+                            Move validation and check/checkmate detection
+                            written from scratch, synced through Firebase
+                            Realtime Database with optimistic UI updates.
+                        </p>
+                        <span class="stack">React · TypeScript · Firebase</span>
+                    </div>
+                    <div class="side">
+                        <a
+                            class="go"
+                            href="https://github.com/Noozey"
+                            target="_blank"
+                            rel="noopener"
+                            >GitHub &#8599;</a
+                        >
+                    </div>
+                </article>
+            </section>
+
+            <section id="experience">
+                <div class="sec-head">
+                    <h2>Experience</h2>
+                    <span class="tag">& Education</span>
+                </div>
+                <div class="job">
+                    <div class="when">Jun 2024 - Sep 2024</div>
+                    <div>
+                        <h3>Full Stack Developer Intern, Sriyog</h3>
+                        <span class="tag">Kathmandu, Nepal</span>
+                        <ul>
+                            <li>
+                                Built and shipped the PUSOM website end to end
+                                with React.js and Next.js, owning the frontend
+                                from wireframe to deployment.
+                            </li>
+                            <li>
+                                Developed Garden Sewa, a cross-platform React
+                                Native app, focused on transition performance
+                                and consistent UI across devices.
+                            </li>
+                            <li>
+                                Designed REST APIs in Node.js and Express
+                                covering authentication, sessions and core
+                                business logic, in agile sprints.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="edu job">
+                    <div class="when">Completed 2026</div>
+                    <div>
+                        <h3>BSc (Hons) Computing</h3>
+                        <p>
+                            Islington College, Kathmandu, in partnership with
+                            London Metropolitan University (final transcript
+                            pending)
+                        </p>
+                        <p>
+                            Languages: English (fluent), Nepali (native), Hindi
+                            (conversational)
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="skills">
+                <div class="sec-head">
+                    <h2>Tools</h2>
+                    <span class="tag">What I work with</span>
+                </div>
+                <div class="skills">
+                    <div class="skill">
+                        <h4>Real-time &amp; networking</h4>
+                        <p>
+                            WebSockets, Socket.io, WebRTC, Agora SDK,
+                            client-side interpolation, server-authoritative
+                            state sync, REST API design
+                        </p>
+                    </div>
+                    <div class="skill">
+                        <h4>Languages &amp; frameworks</h4>
+                        <p>
+                            JavaScript (ES6+), TypeScript, React, Next.js, React
+                            Native, Node.js, Express, HTML5, CSS3
+                        </p>
+                    </div>
+                    <div class="skill">
+                        <h4>Data &amp; infrastructure</h4>
+                        <p>
+                            PostgreSQL (Supabase), Firebase, MySQL, MongoDB, JWT
+                            auth, Cloudflare Workers / Durable Objects
+                        </p>
+                    </div>
+                    <div class="skill">
+                        <h4>Tooling &amp; practice</h4>
+                        <p>
+                            Git/GitHub, Vercel, Railway, Redux, Context API,
+                            Tailwind CSS, Agile/Scrum
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="contact" class="contact">
+                <h2>Let's work together</h2>
+                <a class="mail" href="mailto:rohanupreti561@gmail.com"
+                    >rohanupreti561@gmail.com</a
+                >
+            </section>
+
+            <footer>
+                <span>&copy; 2026 Rohan Upreti</span>
+                <span>Kathmandu, Nepal</span>
+            </footer>
+        </div>
+        <script>
+            function fit() {
+                document.querySelectorAll(".view").forEach(function (v) {
+                    var f = v.querySelector("iframe");
+                    if (f) {
+                        f.style.transform =
+                            "scale(" + v.clientWidth / 1280 + ")";
+                    }
+                });
+            }
+            window.addEventListener("resize", fit);
+            window.addEventListener("load", fit);
+            fit();
+        </script>
+    </body>
+</html>
